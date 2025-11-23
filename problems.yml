@@ -1,0 +1,31 @@
+- id: 1
+  filename: 1.two-sum.cs
+  title: "Two Sum"
+  url: "https://leetcode.com/problems/two-sum/"
+  difficulty: Easy
+  tags: [Array, Hash Table]
+  date_solved: 2025-11-23
+
+- id: 2
+  filename: 2.add-two-numbers.cs
+  title: "Add Two Numbers"
+  url: "https://leetcode.com/problems/add-two-numbers/"
+  difficulty: Medium
+  tags: [Linked List, Math]
+  date_solved: 2025-11-23
+
+- id: 9
+  filename: 9.palindrome-number.cs
+  title: "Palindrome Number"
+  url: "https://leetcode.com/problems/palindrome-number/"
+  difficulty: Easy
+  tags: [Math]
+  date_solved: 2025-11-23
+
+- id: 1262
+  filename: 1262.greatest-sum-divisible-by-three.cs
+  title: "Greatest Sum Divisible by Three"
+  url: "https://leetcode.com/problems/greatest-sum-divisible-by-three/"
+  difficulty: Medium
+  tags: [Greedy, Math, Dynamic Programming]
+  date_solved: 2025-11-23

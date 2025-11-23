@@ -1,0 +1,27 @@
+name: Validate metadata
+
+on:
+  push:
+    paths:
+      - '**/*.cs'
+      - 'problems.yml'
+      - 'scripts/**'
+  pull_request:
+    paths:
+      - '**/*.cs'
+      - 'problems.yml'
+      - 'scripts/**'
+
+jobs:
+  validate:
+    name: Validate problem metadata
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run metadata validator
+        shell: powershell
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+          .\scripts\validate_metadata.ps1

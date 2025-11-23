@@ -1,12 +1,24 @@
+// LeetCode 1262 — Greatest Sum Divisible by Three
+// URL: https://leetcode.com/problems/greatest-sum-divisible-by-three/
+// Difficulty: Medium
+// Tags: Greedy, Math, Dynamic Programming
+// Solved: 2025-11-23
 /*
  * @lc app=leetcode id=1262 lang=csharp
  *
  * [1262] Greatest Sum Divisible by Three
- */
+ * */
 
 // @lc code=start
 public class Solution
 {
+    /// <summary>
+    /// Returns the maximum possible sum of a subset of <paramref name="nums"/>
+    /// such that the sum is divisible by three.
+    /// </summary>
+    /// <param name="nums">Array of non-negative integers.</param>
+    /// <returns>The largest sum divisible by three that can be obtained from a subset of <paramref name="nums"/>.
+    /// Returns 0 if no positive sum divisible by three exists.</returns>
     public int MaxSumDivThree(int[] nums)
     {
         int iSum = nums.Sum();
