@@ -8,9 +8,6 @@ This repository contains a collection of LeetCode problems solved in C#. Each fi
 - `9.palindrome-number.cs` — Palindrome Number
 - `1262.greatest-sum-divisible-by-three.cs` — Greatest Sum Divisible by Three
 
-**What I added**
-- XML documentation comments (`/// <summary>`, `<param>`, `<returns>`) for the public methods in each solution so IDEs (Visual Studio / VS Code) can show method summaries and signatures.
-
 **How to run / experiment locally**
 
 The solutions are class definitions (no `Main` method). To run them quickly, create a small console project that calls the solutions with sample inputs.
