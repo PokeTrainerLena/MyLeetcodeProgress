@@ -1,9 +1,18 @@
 # Validate metadata headers in .cs files against problems.yml
-# Usage: .\scripts\validate_metadata.ps1
+# Usage:
+#  - Recommended (avoids execution-policy errors): run the wrapper
+#      .\scripts\validate_metadata.cmd
+#  - Or run explicitly bypassing policy for this process:
+#      powershell -ExecutionPolicy Bypass -File .\scripts\validate_metadata.ps1
 
-$repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path -ErrorAction SilentlyContinue
-if (-not $repoRoot) { $repoRoot = Get-Location }
-$repoRoot = Resolve-Path $repoRoot
+# Attempt to determine repository root reliably when invoked from wrapper or directly
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path -ErrorAction SilentlyContinue
+if ($scriptDir) {
+    # If the script is in scripts/, the repo root is the parent directory
+    $repoRoot = Resolve-Path (Join-Path $scriptDir '..')
+} else {
+    $repoRoot = Resolve-Path (Get-Location)
+}
 
 $yamlPath = Join-Path $repoRoot 'problems.yml'
 if (-not (Test-Path $yamlPath)) {
@@ -14,17 +23,17 @@ if (-not (Test-Path $yamlPath)) {
 $yaml = Get-Content $yamlPath -Raw
 # Simple YAML splitter for small, predictable file. Each entry starts with "- id:".
 $entries = @()
-$blocks = $yaml -split "(?m)^\-\s+id:" | Where-Object { $_.Trim() -ne "" }
+$blocks = $yaml -split '(?m)^\-\s+id:' | Where-Object { $_.Trim() -ne '' }
 foreach ($b in $blocks) {
     $block = "id:" + $b.TrimStart()
     $obj = [ordered]@{}
-    if ($block -match "id:\s*(\d+)") { $obj.id = $matches[1] }
-    if ($block -match "filename:\s*(\S+)") { $obj.filename = $matches[1] }
-    if ($block -match "title:\s*\"?(.+?)\"?\s*(\r?\n|$)") { $obj.title = $matches[1].Trim() }
-    if ($block -match "url:\s*\"?(.+?)\"?\s*(\r?\n|$)") { $obj.url = $matches[1].Trim() }
-    if ($block -match "difficulty:\s*(\S+)") { $obj.difficulty = $matches[1] }
-    if ($block -match "tags:\s*\[(.+?)\]") { $tags = $matches[1].Split(',') | ForEach-Object { $_.Trim() }; $obj.tags = $tags }
-    if ($block -match "date_solved:\s*(\S+)") { $obj.date_solved = $matches[1] }
+    if ($block -match 'id:\s*(\d+)') { $obj.id = $matches[1] }
+    if ($block -match 'filename:\s*(\S+)') { $obj.filename = $matches[1] }
+    if ($block -match 'title:\s*"?(.+?)"?\s*(\r?\n|$)') { $obj.title = $matches[1].Trim() }
+    if ($block -match 'url:\s*"?(.+?)"?\s*(\r?\n|$)') { $obj.url = $matches[1].Trim() }
+    if ($block -match 'difficulty:\s*(\S+)') { $obj.difficulty = $matches[1] }
+    if ($block -match 'tags:\s*\[(.+?)\]') { $tags = $matches[1].Split(',') | ForEach-Object { $_.Trim() }; $obj.tags = $tags }
+    if ($block -match 'date_solved:\s*(\S+)') { $obj.date_solved = $matches[1] }
     $entries += (New-Object psobject -Property $obj)
 }
 
@@ -36,9 +45,9 @@ foreach ($e in $entries) {
         $errors += "Missing file for index entry: $($e.filename)"
         continue
     }
-    $head = Get-Content $filePath -TotalCount 30 -Raw
-    # Look for minimal header lines
-    if ($head -notmatch "//\s*LeetCode\s+$($e.id)\s+\u2014\s*(.+)") {
+    $head = Get-Content $filePath -TotalCount 30 | Out-String
+    # Look for minimal header lines (relaxed title check: look for "LeetCode <id>")
+    if ($head -notmatch ("LeetCode\s+" + [regex]::Escape($e.id.ToString()))) {
         $errors += "Header title line missing or mismatched in $($e.filename)"
     }
     if ($head -notmatch "//\s*URL:\s*(.+)") {

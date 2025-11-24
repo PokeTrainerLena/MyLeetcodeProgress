@@ -1,0 +1,52 @@
+# Visual Studio / .NET
+bin/
+obj/
+.vs/
+TestResults/
+
+# Rider
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Build outputs
+*.exe
+*.dll
+*.pdb
+
+# NuGet
+*.nupkg
+.nuget/
+
+# JetBrains Rider
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*~
+
+# Visual Studio Code
+.vscode/
+
+# Test results and coverage
+coverage/
+*.coverage
+
+# Solution and project specific
+*.sln.docstates
+
+# Ignore packages folders
+packages/
+
+# Ignore node modules if any
+node_modules/
