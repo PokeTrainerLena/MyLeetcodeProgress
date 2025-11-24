@@ -14,6 +14,14 @@
   tags: [Linked List, Math]
   date_solved: 2025-11-23
 
+- id: 3
+  filename: 3.longest-substring-without-repeating-characters.cs
+  title: "Longest Substring Without Repeating Characters"
+  url: "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+  difficulty: Medium
+  tags: [Hash Table, Two Pointers, String, Sliding Window]
+  date_solved: 2025-11-24
+
 - id: 9
   filename: 9.palindrome-number.cs
   title: "Palindrome Number"
