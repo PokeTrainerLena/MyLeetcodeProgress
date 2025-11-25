@@ -45,3 +45,11 @@
   difficulty: Easy
   tags: [Bit Manipulation, Math]
   date_solved: 2025-11-24
+
+- id: 1015
+  filename: 1015.smallest-integer-divisible-by-k.cs
+  title: "Smallest Integer Divisible by K"
+  url: "https://leetcode.com/problems/smallest-integer-divisible-by-k/"
+  difficulty: Medium
+  tags: [Math, Number Theory]
+  date_solved: 2025-11-25
