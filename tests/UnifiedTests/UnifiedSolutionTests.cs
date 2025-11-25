@@ -95,6 +95,7 @@ public class UnifiedSolutionTests
     [InlineData(1, "TwoSum")]
     [InlineData(9, "IsPalindrome")]
     [InlineData(13, "RomanToInt")]
+    [InlineData(14, "LongestCommonPrefix")]
     [InlineData(1015, "SmallestRepunitDivByK")]
     [InlineData(1018, "PrefixesDivBy5")]
     [InlineData(1262, "MaxSumDivThree")]

@@ -80,3 +80,4 @@ That's it! No need to create a whole test project structure.
 - The unified test compiles each solution file on demand using Roslyn
 - All three current tests (1, 9, 13) are passing ✅
 - Solutions automatically get `using System.Linq;` added if needed
+- for individual tests:  dotnet test tests\UnifiedTests --filter "DisplayName~14"
