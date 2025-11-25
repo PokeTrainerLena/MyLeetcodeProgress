@@ -53,3 +53,11 @@
   difficulty: Medium
   tags: [Math, Number Theory]
   date_solved: 2025-11-25
+
+- id: 13
+  filename: 13.roman-to-integer.cs
+  title: "Roman to Integer"
+  url: "https://leetcode.com/problems/roman-to-integer/"
+  difficulty: Easy
+  tags: [String, Math]
+  date_solved: 2025-11-25

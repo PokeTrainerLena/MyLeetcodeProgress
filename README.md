@@ -1,67 +1,35 @@
-# MyLeetcodeProgress
+﻿# LeetCode Solutions
 
-This repository contains a collection of LeetCode problems solved in C#. Each file is a standalone solution for a single LeetCode problem and includes XML documentation comments for the primary method.
+This README is generated from `problems.yml`.
 
-**Repository contents**
-- `1.two-sum.cs` — Two Sum
-- `2.add-two-numbers.cs` — Add Two Numbers
-- `9.palindrome-number.cs` — Palindrome Number
-- `1262.greatest-sum-divisible-by-three.cs` — Greatest Sum Divisible by Three
+## Indexed problems
 
-**How to run / experiment locally**
+| ID | Title | Difficulty | Tags | File | Date Solved |
+|---:|---|---|---|---|---|
+| 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | Easy | Array, Hash Table | [1.two-sum.cs](1.two-sum.cs) | 2025-11-23 |
+| 2 | [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/) | Medium | Linked List, Math | [2.add-two-numbers.cs](2.add-two-numbers.cs) | 2025-11-23 |
+| 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Medium | Hash Table, Two Pointers, String, Sliding Window | [3.longest-substring-without-repeating-characters.cs](3.longest-substring-without-repeating-characters.cs) | 2025-11-24 |
+| 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | Easy | Math | [9.palindrome-number.cs](9.palindrome-number.cs) | 2025-11-23 |
+| 13 | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | Easy | String, Math | [13.roman-to-integer.cs](13.roman-to-integer.cs) | 2025-11-25 |
+| 1015 | [Smallest Integer Divisible by K](https://leetcode.com/problems/smallest-integer-divisible-by-k/) | Medium | Math, Number Theory | [1015.smallest-integer-divisible-by-k.cs](1015.smallest-integer-divisible-by-k.cs) | 2025-11-25 |
+| 1018 | [Binary Prefix Divisible By 5](https://leetcode.com/problems/binary-prefix-divisible-by-5/) | Easy | Bit Manipulation, Math | [1018.binary-prefix-divisible-by-5.cs](1018.binary-prefix-divisible-by-5.cs) | 2025-11-24 |
+| 1262 | [Greatest Sum Divisible by Three](https://leetcode.com/problems/greatest-sum-divisible-by-three/) | Medium | Greedy, Math, Dynamic Programming | [1262.greatest-sum-divisible-by-three.cs](1262.greatest-sum-divisible-by-three.cs) | 2025-11-23 |
 
-The solutions are class definitions (no `Main` method). To run a solution quickly, create a small console project, copy the desired solution file(s) into it and call the solution from `Program.cs`.
+## How to run tests and validator
 
-Short examples (PowerShell):
-
-Create a temporary runner project and run one solution:
-
-```powershell
-dotnet new console -o runner
-Copy-Item -Path ..\1.two-sum.cs -Destination runner -Force
-# edit runner\Program.cs to call TwoSum.Solution or similar
-dotnet run --project runner
-```
-
-Run a single test project (recommended):
-
-```powershell
-dotnet test tests\1015.smallest-integer-divisible-by-k
-```
-
-Run all tests (requires the solution file):
-
+Run tests:
 ```powershell
 dotnet test
 ```
 
-Create a repository solution and add all test projects:
-
+Run metadata validator:
 ```powershell
-dotnet new sln -n MyLeetcodeProgress
-Get-ChildItem -Path .\tests -Recurse -Filter *.csproj | ForEach-Object { dotnet sln add $_.FullName }
-dotnet test
+.\\scripts\\validate_metadata.cmd
 ```
 
-Validator (metadata)
-- Use the included validator to ensure per-file headers and `problems.yml` stay in sync. Run the wrapper from PowerShell to avoid execution policy changes:
-
+Regenerate README:
 ```powershell
-.\scripts\validate_metadata.cmd
+powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\generate_readme.ps1
 ```
 
-Adding problems
-- Add the solution file named `NNNN.title.cs` with header metadata lines (see examples in repo).
-- Add a matching entry to `problems.yml`.
-- Add an xUnit test project under `tests/` named exactly like the solution file and link the `.cs` file in the test project.
-- Run the validator.
-
-Support & notes
-- Tests target `net6.0` and use xUnit; adjust test csproj targets if your environment differs.
-- For numeric problems: the iterative-remainder approach is often preferred for correctness and performance; BigInteger is available for large-number requirements and is used where requested.
-
----
-
-Generated/updated on 2025-11-25
-
-
+Generated on 2025-11-25

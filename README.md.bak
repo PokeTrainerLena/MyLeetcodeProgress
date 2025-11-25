@@ -1,0 +1,35 @@
+﻿# LeetCode Solutions
+
+This README is generated from `problems.yml`.
+
+## Indexed problems
+
+| ID | Title | Difficulty | Tags | File | Date Solved |
+|---:|---|---|---|---|---|
+| 1 |  |  |  |  |  |
+| 2 |  |  |  |  |  |
+| 3 |  |  |  |  |  |
+| 9 |  |  |  |  |  |
+| 13 |  |  |  |  |  |
+| 1015 |  |  |  |  |  |
+| 1018 |  |  |  |  |  |
+| 1262 |  |  |  |  |  |
+
+## How to run tests and validator
+
+Run tests:
+```powershell
+dotnet test
+```
+
+Run metadata validator:
+```powershell
+.\\scripts\\validate_metadata.cmd
+```
+
+Regenerate README:
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\generate_readme.ps1
+```
+
+Generated on 2025-11-25
