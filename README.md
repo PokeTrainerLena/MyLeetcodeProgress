@@ -10,24 +10,58 @@ This repository contains a collection of LeetCode problems solved in C#. Each fi
 
 **How to run / experiment locally**
 
-The solutions are class definitions (no `Main` method). To run them quickly, create a small console project that calls the solutions with sample inputs.
+The solutions are class definitions (no `Main` method). To run a solution quickly, create a small console project, copy the desired solution file(s) into it and call the solution from `Program.cs`.
 
-Example (PowerShell):
+Short examples (PowerShell):
+
+Create a temporary runner project and run one solution:
 
 ```powershell
-# 1) Create a console project
 dotnet new console -o runner
-
-# 2) Copy solution files into the project folder
-Copy-Item -Path ..\*.cs -Destination runner -Force
-
-# 3) Replace the generated Program.cs with a small runner that invokes a solution.
-#    (Edit runner\Program.cs and add code to create inputs and print results.)
-
-# 4) Run the project
+Copy-Item -Path ..\1.two-sum.cs -Destination runner -Force
+# edit runner\Program.cs to call TwoSum.Solution or similar
 dotnet run --project runner
 ```
 
-If you prefer compiling single files with the C# compiler (MSBuild/Csc) you can create a `Program.cs` with a `Main` method and compile with `dotnet` or Visual Studio.
+Run a single test project (recommended):
+
+```powershell
+dotnet test tests\1015.smallest-integer-divisible-by-k
+```
+
+Run all tests (requires the solution file):
+
+```powershell
+dotnet test
+```
+
+Create a repository solution and add all test projects:
+
+```powershell
+dotnet new sln -n MyLeetcodeProgress
+Get-ChildItem -Path .\tests -Recurse -Filter *.csproj | ForEach-Object { dotnet sln add $_.FullName }
+dotnet test
+```
+
+Validator (metadata)
+- Use the included validator to ensure per-file headers and `problems.yml` stay in sync. Run the wrapper from PowerShell to avoid execution policy changes:
+
+```powershell
+.\scripts\validate_metadata.cmd
+```
+
+Adding problems
+- Add the solution file named `NNNN.title.cs` with header metadata lines (see examples in repo).
+- Add a matching entry to `problems.yml`.
+- Add an xUnit test project under `tests/` named exactly like the solution file and link the `.cs` file in the test project.
+- Run the validator.
+
+Support & notes
+- Tests target `net6.0` and use xUnit; adjust test csproj targets if your environment differs.
+- For numeric problems: the iterative-remainder approach is often preferred for correctness and performance; BigInteger is available for large-number requirements and is used where requested.
+
+---
+
+Generated/updated on 2025-11-25
 
 
