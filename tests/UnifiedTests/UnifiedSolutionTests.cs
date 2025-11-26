@@ -99,6 +99,7 @@ public class UnifiedSolutionTests
     [InlineData(1015, "SmallestRepunitDivByK")]
     [InlineData(1018, "PrefixesDivBy5")]
     [InlineData(1262, "MaxSumDivThree")]
+    [InlineData(2435, "NumberOfPaths")]
     public void TestSolution(int problemId, string methodName)
     {
         if (!_testCases.ContainsKey(problemId))
@@ -200,6 +201,20 @@ public class UnifiedSolutionTests
         else if (targetType == typeof(string))
         {
             return value.ToString()!;
+        }
+        else if (targetType == typeof(int[][]))
+        {
+            if (value is List<object> list)
+            {
+                return list.Select(row => 
+                {
+                    if (row is List<object> rowList)
+                    {
+                        return rowList.Select(v => Convert.ToInt32(v)).ToArray();
+                    }
+                    return new int[0];
+                }).ToArray();
+            }
         }
         else if (targetType == typeof(int[]))
         {
